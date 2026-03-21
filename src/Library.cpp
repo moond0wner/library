@@ -52,7 +52,7 @@ Book* Library::findBookById(int bookId) {
 vector<Book> Library::findBooksByTitle(string title) {
 	vector<Book> foundBooks;
 	for (auto& book : books) {
-		if (book.getTitle().find(title) != string::npos) {
+		if (toLower(book.getTitle()).find(title) != string::npos) {
 			foundBooks.push_back(book);
 		}
 	}
@@ -62,7 +62,7 @@ vector<Book> Library::findBooksByTitle(string title) {
 vector<Book> Library::findBooksByAuthor(string author) {
 	vector<Book> foundBooks;
 	for (auto& book : books) {
-		if (book.getAuthor().find(author) != string::npos) {
+		if (toLower(book.getAuthor()).find(author) != string::npos) {
 			foundBooks.push_back(book);
 		}
 	}
@@ -103,7 +103,7 @@ Reader* Library::findReaderById(int readerId) {
 vector<Reader> Library::findReadersByName(string name) {
 	vector<Reader> foundReaders;
 	for (auto& reader : readers) {
-		if (reader.getNameReader().find(name) != string::npos) {
+		if (toLower(reader.getNameReader()).find(name) != string::npos) {
 			foundReaders.push_back(reader);
 		}
 	}
@@ -149,20 +149,20 @@ vector<pair<Book, Reader>> Library::getOverdue(time_t currentDate) {
 
 void Library::printAllBooks() {
 	for (auto& book : books) {
+		cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << " - " << book.getYear();
 		if (!book.getIsAvailable()) {
-			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor()
-				<< " (выдана читателю " << dateToString(book.getBorrowDate()) << ")" << endl;
+			Reader* reader = findReaderById(book.getBorrowedBy());
+			string readerName = reader ? reader->getNameReader() : "неизвестно";
+			cout << " (выдана читателю " << readerName << " - " << dateToString(book.getBorrowDate()) << ")";
 		}
-		else {
-			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << endl;
-		}
+		cout << endl;
 	}
 }
 
 void Library::printAvailableBooks() {
 	for (auto& book: books) {
 		if (book.getIsAvailable()) {
-			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << endl;
+			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << " - " << book.getYear() << endl;
 		}
 	}
 }
@@ -170,8 +170,12 @@ void Library::printAvailableBooks() {
 void Library::printBorrowedBooks() {
 	for (auto& book : books) {
 		if (!book.getIsAvailable()) {
-			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor()
-				<< " (выдана читателю " << dateToString(book.getBorrowDate()) << ")" << endl;
+			Reader* reader = findReaderById(book.getBorrowedBy());
+			string readerName = reader ? reader->getNameReader() : "неизвестно";
+			cout << "\t" << book.getId() << ": " << book.getTitle()
+				<< " - " << book.getAuthor() << " - " << book.getYear()
+				<< " (выдана читателю " << readerName
+				<< " - " << dateToString(book.getBorrowDate()) << ")" << endl;
 		}
 	}
 }
