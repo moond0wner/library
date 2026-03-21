@@ -1,13 +1,4 @@
-﻿/*TODO:
-* 1. функционал 3 и 4 пункта главного меню поместить в 1 пункт
-* 2. добавить валидацию на номер телефона/email (перед этим узнать что будет вводится)
-* 3. дописать в выводе всех книг их год создания
-* 4. подробнее написать кому принадлежит какая книга
-* 5. подробнее написать какие книги есть у каждого читателя
-* 6. к дате написать время
-*/ 
-
-#include <iostream>
+﻿#include <iostream>
 #include <Windows.h>
 #include <string>
 #include "Library.h"
@@ -22,14 +13,107 @@ void printHeader(const string& title) {
 	cout << string(50, '=') << endl;
 }
 
+
+void returnBookInterface(Library& lib) {
+	if (lib.getAllBooks().empty() || lib.getAllReaders().empty()) {
+		cout << "Нет ни одного читателя или книги" << endl;
+		return;
+	}
+
+	cout << "--- Возврат книги ---" << endl;
+
+	int bookId, readerId;
+	bool validBook = false, validReader = false;
+
+
+	while (!validBook) {
+		cout << "ID книги: ";
+		cin >> bookId;
+		Book* book = lib.findBookById(bookId);
+		if (book && !book->getIsAvailable()) {
+			validBook = true;
+		}
+		else {
+			cout << "Книга с таким ID не найдена или не выдана. Попробуйте снова." << endl;
+		}
+	}
+
+	while (!validReader) {
+		cout << "ID читателя: ";
+		cin >> readerId;
+		Reader* reader = lib.findReaderById(readerId);
+		if (reader) {
+			validReader = true;
+		}
+		else {
+			cout << "Читатель с таким ID не найден. Попробуйте снова." << endl;
+		}
+	}
+
+	if (lib.returnBook(bookId, readerId)) {
+		cout << "Книга вернулась!" << endl;
+	}
+	else {
+		cout << "Ошибка возврата!" << endl;
+	}
+}
+
+
+void borrowBookInterface(Library& lib) {
+	if (lib.getAllBooks().empty() || lib.getAllReaders().empty()) {
+		cout << "Нет ни одного читателя или книги" << endl;
+		return;
+	}
+
+	cout << "--- Выдача книги ---" << endl;
+
+	int bookId, readerId;
+	bool validBook = false, validReader = false;
+
+	while (!validBook) {
+		cout << "ID книги: ";
+		cin >> bookId;
+		Book* book = lib.findBookById(bookId);
+		if (book && book->getIsAvailable()) {
+			validBook = true;
+		}
+		else {
+			cout << "Книга с таким ID не найдена или уже выдана. Попробуйте снова." << endl;
+		}
+	}
+
+	while (!validReader) {
+		cout << "ID читателя: ";
+		cin >> readerId;
+		Reader* reader = lib.findReaderById(readerId);
+		if (reader) {
+			validReader = true;
+		}
+		else {
+			cout << "Читатель с таким ID не найден. Попробуйте снова." << endl;
+		}
+	}
+
+	if (lib.borrowBook(bookId, readerId, getCurrentDate())) {
+		cout << "Книга выдана!" << endl;
+	}
+	else {
+		cout << "Ошибка выдачи!" << endl;
+	}
+}
+
+void overdueInterface(Library& lib) {
+	cout << "--- Должники ---" << endl;
+	lib.printOverdue(getCurrentDate());
+}
+
+
 void mainInterface() {
 	printHeader("БИБЛИОТЕКА");
 	cout << "1. Управление книгами" << endl;
 	cout << "2. Управление читателями" << endl;
-	cout << "3. Выдать книгу" << endl;
-	cout << "4. Вернуть книгу" << endl;
-	cout << "5. Показать должников" << endl;
-	cout << "6. Выход" << endl;
+	cout << "3. Показать должников" << endl;
+	cout << "4. Выход" << endl;
 	cout << "----------------------------------------" << endl;
 	cout << "Выберите действие: ";
 }
@@ -38,11 +122,13 @@ void bookInterface() {
 	cout << "--- Управление книгами ---" << endl;
 	cout << "1. Добавить книгу" << endl;
 	cout << "2. Удалить книгу" << endl;
-	cout << "3. Найти по названию" << endl;
-	cout << "4. Найти по автору" << endl;
-	cout << "5. Показать все книги" << endl;
-	cout << "6. Показать выданные" << endl;
-	cout << "7. Назад" << endl;
+	cout << "3. Выдать книгу" << endl;
+	cout << "4. Вернуть книгу" << endl;
+	cout << "5. Найти по названию" << endl;
+	cout << "6. Найти по автору" << endl;
+	cout << "7. Показать все книги" << endl;
+	cout << "8. Показать выданные" << endl;
+	cout << "9. Назад" << endl;
 	cout << "----------------------------------------" << endl;
 	cout << "Выберите действие: ";
 }
@@ -105,7 +191,9 @@ void menuBooks(Library& lib) {
 			break;
 
 		}
-		case 3: {
+		case 3:	borrowBookInterface(lib); break;
+		case 4: returnBookInterface(lib); break;
+		case 5: {
 			string targetNameBook;
 			cin.ignore();
 			cout << "Введите название книги: ";
@@ -122,7 +210,7 @@ void menuBooks(Library& lib) {
 			}
 			break;
 		}
-		case 4: {
+		case 6: {
 			string targetAuthorBook;
 			cin.ignore();
 			cout << "Введите автора: ";
@@ -139,7 +227,7 @@ void menuBooks(Library& lib) {
 			}
 			break;
 		}
-		case 5: {
+		case 7: {
 			if (lib.getAllBooks().empty()) {
 				cout << "Библиотека пустая" << endl;
 				break;
@@ -148,7 +236,7 @@ void menuBooks(Library& lib) {
 			lib.printAllBooks();
 			break;
 		}
-		case 6: {
+		case 8: {
 			vector<Book> borrowedBooks = lib.getBorrowedBooks();
 			if (borrowedBooks.empty()) {
 				cout << "Ни одну книгу не заняли, либо библиотека пустая" << endl;
@@ -159,7 +247,7 @@ void menuBooks(Library& lib) {
 			break;
 		}
 		}
-	} while (choice != 7);
+	} while (choice != 9);
 }
 
 void readerInterface() {
@@ -181,13 +269,46 @@ void readerMenu(Library& lib) {
 		switch (choice) {
 		case 1: {
 			string name, contact;
+			int choice;
 
 			cin.ignore();
 			cout << "Введите имя читателя: ";
 			getline(cin, name);
 
-			cout << "Введите контакт читателя (номер телефона/email): ";
-			getline(cin, contact);
+			cout << "Тип контакта который можно добавить:" << endl;
+			cout << "1. Номер телефона" << endl;
+			cout << "2. Электронная почта" << endl;
+			cout << "Выберите контакт который хотите добавить: ";
+			cin >> choice;
+
+			switch (choice) {
+			case 1: {
+				cin.ignore();
+				bool isValid = false;
+				while (!isValid) {
+					cout << "Введите номер телефона читателя: ";
+					getline(cin, contact);
+					if (auto err = validateNumberPhoneContact(contact)) cout << *err << endl;
+					else isValid = true;
+				}
+
+				break;
+			}
+			case 2: {
+				cin.ignore();
+				bool isValid = false;
+
+				while (!isValid) {
+					cout << "Введите email читателя: ";
+					getline(cin, contact);
+
+					if (auto err = validateEmailContact(contact)) cout << *err << endl;
+					else isValid = true;
+				}
+			}
+
+				break;
+			}
 
 			lib.addReader(name, contact);
 			cout << "Читатель успешно добавлен!" << endl;
@@ -253,101 +374,10 @@ void readerMenu(Library& lib) {
 		}
 	} while (choice != 5);
 }
-void borrowBookInterface(Library& lib) {
-	if (lib.getAllBooks().empty() || lib.getAllReaders().empty()) {
-		cout << "Нет ни одного читателя или книги" << endl;
-		return;
-	}
-
-	cout << "--- Выдача книги ---" << endl;
-
-	int bookId, readerId;
-	bool validBook = false, validReader = false;
-
-	while (!validBook) {
-		cout << "ID книги: ";
-		cin >> bookId;
-		Book* book = lib.findBookById(bookId);
-		if (book && book->getIsAvailable()) {
-			validBook = true;
-		}
-		else {
-			cout << "Книга с таким ID не найдена или уже выдана. Попробуйте снова." << endl;
-		}
-	}
-
-	while (!validReader) {
-		cout << "ID читателя: ";
-		cin >> readerId;
-		Reader* reader = lib.findReaderById(readerId);
-		if (reader) {
-			validReader = true;
-		}
-		else {
-			cout << "Читатель с таким ID не найден. Попробуйте снова." << endl;
-		}
-	}
-
-	if (lib.borrowBook(bookId, readerId, getCurrentDate())) {
-		cout << "Книга выдана!" << endl;
-	}
-	else {
-		cout << "Ошибка выдачи!" << endl;
-	}
-}
-
-void returnBookInterface(Library& lib) {
-	if (lib.getAllBooks().empty() || lib.getAllReaders().empty()) {
-		cout << "Нет ни одного читателя или книги" << endl;
-		return;
-	}
-
-	cout << "--- Возврат книги ---" << endl;
-
-	int bookId, readerId;
-	bool validBook = false, validReader = false;
-
-
-	while (!validBook) {
-		cout << "ID книги: ";
-		cin >> bookId;
-		Book* book = lib.findBookById(bookId);
-		if (book && !book->getIsAvailable()) {
-			validBook = true;
-		}
-		else {
-			cout << "Книга с таким ID не найдена или не выдана. Попробуйте снова." << endl;
-		}
-	}
-
-	while (!validReader) {
-		cout << "ID читателя: ";
-		cin >> readerId;
-		Reader* reader = lib.findReaderById(readerId);
-		if (reader) {
-			validReader = true;
-		}
-		else {
-			cout << "Читатель с таким ID не найден. Попробуйте снова." << endl;
-		}
-	}
-
-	if (lib.returnBook(bookId, readerId)) {
-		cout << "Книга вернулась!" << endl;
-	}
-	else {
-		cout << "Ошибка возврата!" << endl;
-	}
-}
-
-void overdueInterface(Library& lib) {
-	cout << "--- Должники ---" << endl;
-	lib.printOverdue(getCurrentDate());
-}
 
 int main() {
-	system("chcp 1251 > nul");  // Windows-1251
-	setlocale(LC_ALL, "Rus");
+	system("chcp 65001 > nul");  // UTF-8
+	setlocale(LC_ALL, "ru_RU.UTF-8");
 
 	Library lib;
 	int choice;
@@ -358,12 +388,10 @@ int main() {
 		switch (choice) {
 		case 1: menuBooks(lib); break;
 		case 2: readerMenu(lib); break;
-		case 3: borrowBookInterface(lib); break;
-		case 4: returnBookInterface(lib); break;
-		case 5: overdueInterface(lib); break;
+		case 3: overdueInterface(lib); break;
 	}
 
-	} while (choice != 6);
+	} while (choice != 4);
 
 	cout << "Программа завершена" << endl;
 
