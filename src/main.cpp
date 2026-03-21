@@ -1,9 +1,10 @@
-/*TODO:
-* 1. функционал 3 и 4 пункта главного меню поместить в 1 пункт
-* 2. добавить валидацию на номер телефона/email (перед этим узнать что будет вводится)
-* 3. дописать в выводе всех книг их год создания
-* 4. подробнее написать кому принадлежит какая книга
-* 5. подробнее написать какие книги есть у каждого читателя
+п»ї/*TODO:
+* 1. С„СѓРЅРєС†РёРѕРЅР°Р» 3 Рё 4 РїСѓРЅРєС‚Р° РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ РїРѕРјРµСЃС‚РёС‚СЊ РІ 1 РїСѓРЅРєС‚
+* 2. РґРѕР±Р°РІРёС‚СЊ РІР°Р»РёРґР°С†РёСЋ РЅР° РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°/email (РїРµСЂРµРґ СЌС‚РёРј СѓР·РЅР°С‚СЊ С‡С‚Рѕ Р±СѓРґРµС‚ РІРІРѕРґРёС‚СЃСЏ)
+* 3. РґРѕРїРёСЃР°С‚СЊ РІ РІС‹РІРѕРґРµ РІСЃРµС… РєРЅРёРі РёС… РіРѕРґ СЃРѕР·РґР°РЅРёСЏ
+* 4. РїРѕРґСЂРѕР±РЅРµРµ РЅР°РїРёСЃР°С‚СЊ РєРѕРјСѓ РїСЂРёРЅР°РґР»РµР¶РёС‚ РєР°РєР°СЏ РєРЅРёРіР°
+* 5. РїРѕРґСЂРѕР±РЅРµРµ РЅР°РїРёСЃР°С‚СЊ РєР°РєРёРµ РєРЅРёРіРё РµСЃС‚СЊ Сѓ РєР°Р¶РґРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ
+* 6. Рє РґР°С‚Рµ РЅР°РїРёСЃР°С‚СЊ РІСЂРµРјСЏ
 */ 
 
 #include <iostream>
@@ -22,28 +23,28 @@ void printHeader(const string& title) {
 }
 
 void mainInterface() {
-	printHeader("БИБЛИОТЕКА");
-	cout << "1. Управление книгами" << endl;
-	cout << "2. Управление читателями" << endl;
-	cout << "3. Выдать книгу" << endl;
-	cout << "4. Вернуть книгу" << endl;
-	cout << "5. Показать должников" << endl;
-	cout << "6. Выход" << endl;
+	printHeader("Р‘РР‘Р›РРћРўР•РљРђ");
+	cout << "1. РЈРїСЂР°РІР»РµРЅРёРµ РєРЅРёРіР°РјРё" << endl;
+	cout << "2. РЈРїСЂР°РІР»РµРЅРёРµ С‡РёС‚Р°С‚РµР»СЏРјРё" << endl;
+	cout << "3. Р’С‹РґР°С‚СЊ РєРЅРёРіСѓ" << endl;
+	cout << "4. Р’РµСЂРЅСѓС‚СЊ РєРЅРёРіСѓ" << endl;
+	cout << "5. РџРѕРєР°Р·Р°С‚СЊ РґРѕР»Р¶РЅРёРєРѕРІ" << endl;
+	cout << "6. Р’С‹С…РѕРґ" << endl;
 	cout << "----------------------------------------" << endl;
-	cout << "Выберите действие: ";
+	cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
 }
 
 void bookInterface() {
-	cout << "--- Управление книгами ---" << endl;
-	cout << "1. Добавить книгу" << endl;
-	cout << "2. Удалить книгу" << endl;
-	cout << "3. Найти по названию" << endl;
-	cout << "4. Найти по автору" << endl;
-	cout << "5. Показать все книги" << endl;
-	cout << "6. Показать выданные" << endl;
-	cout << "7. Назад" << endl;
+	cout << "--- РЈРїСЂР°РІР»РµРЅРёРµ РєРЅРёРіР°РјРё ---" << endl;
+	cout << "1. Р”РѕР±Р°РІРёС‚СЊ РєРЅРёРіСѓ" << endl;
+	cout << "2. РЈРґР°Р»РёС‚СЊ РєРЅРёРіСѓ" << endl;
+	cout << "3. РќР°Р№С‚Рё РїРѕ РЅР°Р·РІР°РЅРёСЋ" << endl;
+	cout << "4. РќР°Р№С‚Рё РїРѕ Р°РІС‚РѕСЂСѓ" << endl;
+	cout << "5. РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ РєРЅРёРіРё" << endl;
+	cout << "6. РџРѕРєР°Р·Р°С‚СЊ РІС‹РґР°РЅРЅС‹Рµ" << endl;
+	cout << "7. РќР°Р·Р°Рґ" << endl;
 	cout << "----------------------------------------" << endl;
-	cout << "Выберите действие: ";
+	cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
 }
 
 void menuBooks(Library& lib) {
@@ -57,32 +58,32 @@ void menuBooks(Library& lib) {
 			int year;
 			
 			cin.ignore();
-			cout << "Введите название книги: ";
+			cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєРЅРёРіРё: ";
 			getline(cin, title);
 
-			cout << "Введите автора данной книги: ";
+			cout << "Р’РІРµРґРёС‚Рµ Р°РІС‚РѕСЂР° РґР°РЅРЅРѕР№ РєРЅРёРіРё: ";
 			getline(cin, author);
 
-			cout << "Введите дату издания книги: ";
+			cout << "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РёР·РґР°РЅРёСЏ РєРЅРёРіРё: ";
 			cin >> year;
 			cin.ignore();
 
 			lib.addBook(title, author, year);
-			cout << "Книга успешно добавлена в библиотеку и уже ждет своего читателя!" << endl;
+			cout << "РљРЅРёРіР° СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР° РІ Р±РёР±Р»РёРѕС‚РµРєСѓ Рё СѓР¶Рµ Р¶РґРµС‚ СЃРІРѕРµРіРѕ С‡РёС‚Р°С‚РµР»СЏ!" << endl;
 			break;
 		}
 		case 2: {
 			vector<Book> books = lib.getAvailableBooks();
 			if (books.empty()) {
-				cout << "Свободных книг нет, либо библиотека пустая" << endl;
+				cout << "РЎРІРѕР±РѕРґРЅС‹С… РєРЅРёРі РЅРµС‚, Р»РёР±Рѕ Р±РёР±Р»РёРѕС‚РµРєР° РїСѓСЃС‚Р°СЏ" << endl;
 				break;
 			}
 			int choice;
 			bool valid = false;
 			while (!valid) {
-				cout << "Представлены свободные книги:" << endl;
+				cout << "РџСЂРµРґСЃС‚Р°РІР»РµРЅС‹ СЃРІРѕР±РѕРґРЅС‹Рµ РєРЅРёРіРё:" << endl;
 				lib.printAvailableBooks();
-				cout << "Введите номер книги (ID) которую нужно убрать из библиотеки: ";
+				cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєРЅРёРіРё (ID) РєРѕС‚РѕСЂСѓСЋ РЅСѓР¶РЅРѕ СѓР±СЂР°С‚СЊ РёР· Р±РёР±Р»РёРѕС‚РµРєРё: ";
 				cin >> choice;
 
 				Book* book = lib.findBookById(choice);
@@ -91,14 +92,14 @@ void menuBooks(Library& lib) {
 					valid = true;
 				}
 				else {
-					cout << "Ошибка: книга с таким ID не найдена или уже выдана. Попробуйте снова." << endl;
+					cout << "РћС€РёР±РєР°: РєРЅРёРіР° СЃ С‚Р°РєРёРј ID РЅРµ РЅР°Р№РґРµРЅР° РёР»Рё СѓР¶Рµ РІС‹РґР°РЅР°. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
 				}
 			}
 			if (lib.removeBook(choice)) {
-				cout << "Книга удалена!" << endl;
+				cout << "РљРЅРёРіР° СѓРґР°Р»РµРЅР°!" << endl;
 			}
 			else {
-				cout << "Не удалось удалить книгу" << endl;
+				cout << "РќРµ СѓРґР°Р»РѕСЃСЊ СѓРґР°Р»РёС‚СЊ РєРЅРёРіСѓ" << endl;
 			}
 			cout << endl;
 			break;
@@ -107,15 +108,15 @@ void menuBooks(Library& lib) {
 		case 3: {
 			string targetNameBook;
 			cin.ignore();
-			cout << "Введите название книги: ";
+			cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєРЅРёРіРё: ";
 			getline(cin, targetNameBook);
 
 			vector<Book> foundBooks = lib.findBooksByTitle(targetNameBook);
 			if (foundBooks.empty()) {
-				cout << "По вашему запросу не найдена ни одна книга" << endl;
+				cout << "РџРѕ РІР°С€РµРјСѓ Р·Р°РїСЂРѕСЃСѓ РЅРµ РЅР°Р№РґРµРЅР° РЅРё РѕРґРЅР° РєРЅРёРіР°" << endl;
 				break;
 			}
-			cout << "Найдены следующие книги:" << endl;
+			cout << "РќР°Р№РґРµРЅС‹ СЃР»РµРґСѓСЋС‰РёРµ РєРЅРёРіРё:" << endl;
 			for (auto& book : foundBooks) {
 				cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << endl;
 			}
@@ -124,15 +125,15 @@ void menuBooks(Library& lib) {
 		case 4: {
 			string targetAuthorBook;
 			cin.ignore();
-			cout << "Введите автора: ";
+			cout << "Р’РІРµРґРёС‚Рµ Р°РІС‚РѕСЂР°: ";
 			getline(cin, targetAuthorBook);
 
 			vector <Book> foundBooks = lib.findBooksByAuthor(targetAuthorBook);
 			if (foundBooks.empty()) {
-				cout << "По вашему запросу не найдена ни одна книга" << endl;
+				cout << "РџРѕ РІР°С€РµРјСѓ Р·Р°РїСЂРѕСЃСѓ РЅРµ РЅР°Р№РґРµРЅР° РЅРё РѕРґРЅР° РєРЅРёРіР°" << endl;
 				break;
 			}
-			cout << "Найдены следующие книги:" << endl;
+			cout << "РќР°Р№РґРµРЅС‹ СЃР»РµРґСѓСЋС‰РёРµ РєРЅРёРіРё:" << endl;
 			for (auto& book : foundBooks) {
 				cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << endl;
 			}
@@ -140,20 +141,20 @@ void menuBooks(Library& lib) {
 		}
 		case 5: {
 			if (lib.getAllBooks().empty()) {
-				cout << "Библиотека пустая" << endl;
+				cout << "Р‘РёР±Р»РёРѕС‚РµРєР° РїСѓСЃС‚Р°СЏ" << endl;
 				break;
 			}
-			cout << "Все книги:" << endl;
+			cout << "Р’СЃРµ РєРЅРёРіРё:" << endl;
 			lib.printAllBooks();
 			break;
 		}
 		case 6: {
 			vector<Book> borrowedBooks = lib.getBorrowedBooks();
 			if (borrowedBooks.empty()) {
-				cout << "Ни одну книгу не заняли, либо библиотека пустая" << endl;
+				cout << "РќРё РѕРґРЅСѓ РєРЅРёРіСѓ РЅРµ Р·Р°РЅСЏР»Рё, Р»РёР±Рѕ Р±РёР±Р»РёРѕС‚РµРєР° РїСѓСЃС‚Р°СЏ" << endl;
 				break;
 			}
-			cout << "Занятые книги:" << endl;
+			cout << "Р—Р°РЅСЏС‚С‹Рµ РєРЅРёРіРё:" << endl;
 			lib.printBorrowedBooks();
 			break;
 		}
@@ -162,14 +163,14 @@ void menuBooks(Library& lib) {
 }
 
 void readerInterface() {
-	cout << "--- Управление читателями ---" << endl;
-	cout << "1. Добавить читателя" << endl;
-	cout << "2. Удалить читателя" << endl;
-	cout << "3. Найти по имени" << endl;
-	cout << "4. Показать всех читателей" << endl;
-	cout << "5. Назад" << endl;
+	cout << "--- РЈРїСЂР°РІР»РµРЅРёРµ С‡РёС‚Р°С‚РµР»СЏРјРё ---" << endl;
+	cout << "1. Р”РѕР±Р°РІРёС‚СЊ С‡РёС‚Р°С‚РµР»СЏ" << endl;
+	cout << "2. РЈРґР°Р»РёС‚СЊ С‡РёС‚Р°С‚РµР»СЏ" << endl;
+	cout << "3. РќР°Р№С‚Рё РїРѕ РёРјРµРЅРё" << endl;
+	cout << "4. РџРѕРєР°Р·Р°С‚СЊ РІСЃРµС… С‡РёС‚Р°С‚РµР»РµР№" << endl;
+	cout << "5. РќР°Р·Р°Рґ" << endl;
 	cout << "----------------------------------------" << endl;
-	cout << "Выберите действие: ";
+	cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
 }
 
 void readerMenu(Library& lib) {
@@ -182,59 +183,59 @@ void readerMenu(Library& lib) {
 			string name, contact;
 
 			cin.ignore();
-			cout << "Введите имя читателя: ";
+			cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С‡РёС‚Р°С‚РµР»СЏ: ";
 			getline(cin, name);
 
-			cout << "Введите контакт читателя (номер телефона/email): ";
+			cout << "Р’РІРµРґРёС‚Рµ РєРѕРЅС‚Р°РєС‚ С‡РёС‚Р°С‚РµР»СЏ (РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°/email): ";
 			getline(cin, contact);
 
 			lib.addReader(name, contact);
-			cout << "Читатель успешно добавлен!" << endl;
+			cout << "Р§РёС‚Р°С‚РµР»СЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ!" << endl;
 			break;
 		} 
 		case 2: {
 			if (lib.getAllReaders().empty()) {
-				cout << "В данный момент в библиотеке нет ни одного читателя!" << endl;
+				cout << "Р’ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РІ Р±РёР±Р»РёРѕС‚РµРєРµ РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ!" << endl;
 				break;
 			}
 			int choice;
 			bool valid = false;
 
 			while (!valid) {
-				cout << "Представлен список читателей:" << endl;
+				cout << "РџСЂРµРґСЃС‚Р°РІР»РµРЅ СЃРїРёСЃРѕРє С‡РёС‚Р°С‚РµР»РµР№:" << endl;
 				lib.printAllReaders();
 
-				cout << "Введите номер (ID) читателя которого нужно удалить из библиотеки: ";
+				cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ (ID) С‡РёС‚Р°С‚РµР»СЏ РєРѕС‚РѕСЂРѕРіРѕ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ РёР· Р±РёР±Р»РёРѕС‚РµРєРё: ";
 				cin >> choice;
 				Reader* reader = lib.findReaderById(choice);
 				if (reader) {
 					if (lib.removeReader(reader->getId())) {
-						cout << "Пользователь удален!" << endl;
+						cout << "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓРґР°Р»РµРЅ!" << endl;
 						valid = true;
 					}
-					else cout << "Не удалось удалить читателя" << endl;
+					else cout << "РќРµ СѓРґР°Р»РѕСЃСЊ СѓРґР°Р»РёС‚СЊ С‡РёС‚Р°С‚РµР»СЏ" << endl;
 				}
 				else {
-					cout << "Читатель не найден, попробуйте снова!" << endl;
+					cout << "Р§РёС‚Р°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°!" << endl;
 				}
 			}
 			break;
 		}
 		case 3: {
 			if (lib.getAllReaders().empty()) {
-				cout << "В данный момент в библиотеке нет ни одного читателя!" << endl;
+				cout << "Р’ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РІ Р±РёР±Р»РёРѕС‚РµРєРµ РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ!" << endl;
 				break;
 			}
 			string targetNameReader;
 			cin.ignore();
-			cout << "Введите имя читателя: ";
+			cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С‡РёС‚Р°С‚РµР»СЏ: ";
 			getline(cin, targetNameReader);
 			vector<Reader> foundReaders = lib.findReadersByName(targetNameReader);
 			if (foundReaders.empty()) {
-				cout << "По вашему запросу ничего не найдено" << endl;
+				cout << "РџРѕ РІР°С€РµРјСѓ Р·Р°РїСЂРѕСЃСѓ РЅРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ" << endl;
 				break;
 			}
-			cout << "Найдены следующие читатели:" << endl;
+			cout << "РќР°Р№РґРµРЅС‹ СЃР»РµРґСѓСЋС‰РёРµ С‡РёС‚Р°С‚РµР»Рё:" << endl;
 			for (auto& reader : foundReaders) {
 				cout << "\t" << reader.getId() << ": " << reader.getNameReader() << " - " << reader.getContactReader() << endl;
 			}
@@ -242,10 +243,10 @@ void readerMenu(Library& lib) {
 		}
 		case 4: {
 			if (lib.getAllReaders().empty()) {
-				cout << "В данный момент в библиотеке нет ни одного читателя!" << endl;
+				cout << "Р’ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РІ Р±РёР±Р»РёРѕС‚РµРєРµ РЅРµС‚ РЅРё РѕРґРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ!" << endl;
 				break;
 			}
-			cout << "Представлен список читателей:" << endl;
+			cout << "РџСЂРµРґСЃС‚Р°РІР»РµРЅ СЃРїРёСЃРѕРє С‡РёС‚Р°С‚РµР»РµР№:" << endl;
 			lib.printAllReaders();
 			break;
 		}
@@ -254,93 +255,93 @@ void readerMenu(Library& lib) {
 }
 void borrowBookInterface(Library& lib) {
 	if (lib.getAllBooks().empty() || lib.getAllReaders().empty()) {
-		cout << "Нет ни одного читателя или книги" << endl;
+		cout << "РќРµС‚ РЅРё РѕРґРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ РёР»Рё РєРЅРёРіРё" << endl;
 		return;
 	}
 
-	cout << "--- Выдача книги ---" << endl;
+	cout << "--- Р’С‹РґР°С‡Р° РєРЅРёРіРё ---" << endl;
 
 	int bookId, readerId;
 	bool validBook = false, validReader = false;
 
 	while (!validBook) {
-		cout << "ID книги: ";
+		cout << "ID РєРЅРёРіРё: ";
 		cin >> bookId;
 		Book* book = lib.findBookById(bookId);
 		if (book && book->getIsAvailable()) {
 			validBook = true;
 		}
 		else {
-			cout << "Книга с таким ID не найдена или уже выдана. Попробуйте снова." << endl;
+			cout << "РљРЅРёРіР° СЃ С‚Р°РєРёРј ID РЅРµ РЅР°Р№РґРµРЅР° РёР»Рё СѓР¶Рµ РІС‹РґР°РЅР°. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
 		}
 	}
 
 	while (!validReader) {
-		cout << "ID читателя: ";
+		cout << "ID С‡РёС‚Р°С‚РµР»СЏ: ";
 		cin >> readerId;
 		Reader* reader = lib.findReaderById(readerId);
 		if (reader) {
 			validReader = true;
 		}
 		else {
-			cout << "Читатель с таким ID не найден. Попробуйте снова." << endl;
+			cout << "Р§РёС‚Р°С‚РµР»СЊ СЃ С‚Р°РєРёРј ID РЅРµ РЅР°Р№РґРµРЅ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
 		}
 	}
 
 	if (lib.borrowBook(bookId, readerId, getCurrentDate())) {
-		cout << "Книга выдана!" << endl;
+		cout << "РљРЅРёРіР° РІС‹РґР°РЅР°!" << endl;
 	}
 	else {
-		cout << "Ошибка выдачи!" << endl;
+		cout << "РћС€РёР±РєР° РІС‹РґР°С‡Рё!" << endl;
 	}
 }
 
 void returnBookInterface(Library& lib) {
 	if (lib.getAllBooks().empty() || lib.getAllReaders().empty()) {
-		cout << "Нет ни одного читателя или книги" << endl;
+		cout << "РќРµС‚ РЅРё РѕРґРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ РёР»Рё РєРЅРёРіРё" << endl;
 		return;
 	}
 
-	cout << "--- Возврат книги ---" << endl;
+	cout << "--- Р’РѕР·РІСЂР°С‚ РєРЅРёРіРё ---" << endl;
 
 	int bookId, readerId;
 	bool validBook = false, validReader = false;
 
 
 	while (!validBook) {
-		cout << "ID книги: ";
+		cout << "ID РєРЅРёРіРё: ";
 		cin >> bookId;
 		Book* book = lib.findBookById(bookId);
 		if (book && !book->getIsAvailable()) {
 			validBook = true;
 		}
 		else {
-			cout << "Книга с таким ID не найдена или не выдана. Попробуйте снова." << endl;
+			cout << "РљРЅРёРіР° СЃ С‚Р°РєРёРј ID РЅРµ РЅР°Р№РґРµРЅР° РёР»Рё РЅРµ РІС‹РґР°РЅР°. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
 		}
 	}
 
 	while (!validReader) {
-		cout << "ID читателя: ";
+		cout << "ID С‡РёС‚Р°С‚РµР»СЏ: ";
 		cin >> readerId;
 		Reader* reader = lib.findReaderById(readerId);
 		if (reader) {
 			validReader = true;
 		}
 		else {
-			cout << "Читатель с таким ID не найден. Попробуйте снова." << endl;
+			cout << "Р§РёС‚Р°С‚РµР»СЊ СЃ С‚Р°РєРёРј ID РЅРµ РЅР°Р№РґРµРЅ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
 		}
 	}
 
 	if (lib.returnBook(bookId, readerId)) {
-		cout << "Книга вернулась!" << endl;
+		cout << "РљРЅРёРіР° РІРµСЂРЅСѓР»Р°СЃСЊ!" << endl;
 	}
 	else {
-		cout << "Ошибка возврата!" << endl;
+		cout << "РћС€РёР±РєР° РІРѕР·РІСЂР°С‚Р°!" << endl;
 	}
 }
 
 void overdueInterface(Library& lib) {
-	cout << "--- Должники ---" << endl;
+	cout << "--- Р”РѕР»Р¶РЅРёРєРё ---" << endl;
 	lib.printOverdue(getCurrentDate());
 }
 
@@ -364,7 +365,7 @@ int main() {
 
 	} while (choice != 6);
 
-	cout << "Программа завершена" << endl;
+	cout << "РџСЂРѕРіСЂР°РјРјР° Р·Р°РІРµСЂС€РµРЅР°" << endl;
 
 	return 0;
 }

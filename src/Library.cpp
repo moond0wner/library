@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "Library.h"
 #include "Book.h"
 #include "Reader.h"
@@ -32,7 +32,7 @@ void Library::addBook(string title, string author, int year) {
 bool Library::removeBook(int bookId) {
 	for (size_t i = 0; i < books.size(); i++) {
 		if (books[i].getId() == bookId) {
-			if (!books[i].getIsAvailable()) return false; // âûäàííóþ êíèãó íåëüçÿ óáðàòü èç áèáëèîòåêè
+			if (!books[i].getIsAvailable()) return false; // Ð²Ñ‹Ð´Ð°Ð½Ð½ÑƒÑŽ ÐºÐ½Ð¸Ð³Ñƒ Ð½ÐµÐ»ÑŒÐ·Ñ ÑƒÐ±Ñ€Ð°Ñ‚ÑŒ Ð¸Ð· Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¸
 			books.erase(books.begin() + i);
 			return true;
 		}
@@ -151,7 +151,7 @@ void Library::printAllBooks() {
 	for (auto& book : books) {
 		if (!book.getIsAvailable()) {
 			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor()
-				<< " (âûäàíà ÷èòàòåëþ " << dateToString(book.getBorrowDate()) << ")" << endl;
+				<< " (Ð²Ñ‹Ð´Ð°Ð½Ð° Ñ‡Ð¸Ñ‚Ð°Ñ‚ÐµÐ»ÑŽ " << dateToString(book.getBorrowDate()) << ")" << endl;
 		}
 		else {
 			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor() << endl;
@@ -171,7 +171,7 @@ void Library::printBorrowedBooks() {
 	for (auto& book : books) {
 		if (!book.getIsAvailable()) {
 			cout << "\t" << book.getId() << ": " << book.getTitle() << " - " << book.getAuthor()
-				<< " (âûäàíà ÷èòàòåëþ " << dateToString(book.getBorrowDate()) << ")" << endl;
+				<< " (Ð²Ñ‹Ð´Ð°Ð½Ð° Ñ‡Ð¸Ñ‚Ð°Ñ‚ÐµÐ»ÑŽ " << dateToString(book.getBorrowDate()) << ")" << endl;
 		}
 	}
 }
@@ -180,18 +180,18 @@ void Library::printAllReaders() {
 	for (const auto& reader : readers) {
 		cout << "\t" << reader.getId() << ": " << reader.getNameReader()
 			<< " - " << reader.getContactReader()
-			<< " (êíèã íà ðóêàõ: " << reader.borrowedCount() << ")" << endl;
+			<< " (ÐºÐ½Ð¸Ð³ Ð½Ð° Ñ€ÑƒÐºÐ°Ñ…: " << reader.borrowedCount() << ")" << endl;
 	}
 }
 
 void Library::printOverdue(time_t currentDate) {
 	auto overdue = getOverdue(currentDate);
 	if (overdue.empty()) {
-		cout << "\tÍåò äîëæíèêîâ" << endl;
+		cout << "\tÐÐµÑ‚ Ð´Ð¾Ð»Ð¶Ð½Ð¸ÐºÐ¾Ð²" << endl;
 		return;
 	}
 	for (const auto& [book, reader] : overdue) {
-		cout << "\tÊíèãà \"" << book.getTitle() << "\" ó ÷èòàòåëÿ "
+		cout << "\tÐšÐ½Ð¸Ð³Ð° \"" << book.getTitle() << "\" Ñƒ Ñ‡Ð¸Ñ‚Ð°Ñ‚ÐµÐ»Ñ "
 			<< reader.getNameReader() << " (ID: " << reader.getId() << ")" << endl;
 	}
 }
