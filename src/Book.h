@@ -26,6 +26,12 @@ public:
 	int getBorrowedBy() const;
 	time_t getBorrowDate() const;
 
+	// сеттеры
+	void setId(int newId) { id = newId; }
+	void setIsAvailable(bool available) { isAvailable = available; }
+	void setBorrowedBy(int readerId) { borrowedBy = readerId; }
+	void setBorrowDate(time_t date) { borrowDate = date; }
+
 	// методы
 	void borrow(int readerId, time_t date); // выдать книгу
 	void returnBook(); // вернуть книгу

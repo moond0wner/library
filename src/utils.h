@@ -12,6 +12,9 @@ bool isDateOverdue(time_t date, time_t current, int daysLimit);
 std::string toLower(const std::string& text);
 std::optional<std::string> validateEmailContact(const std::string& email);
 std::optional<std::string> validateNumberPhoneContact(const std::string& numberPhone);
+std::string inputString(const std::string& prompt);
+int inputInt(const std::string& prompt);
+
 
 #endif
 

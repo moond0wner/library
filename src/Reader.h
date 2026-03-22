@@ -25,6 +25,12 @@ public:
 	std::vector<int> getHistory() const;
 	time_t getRegistrationDate() const;
 
+	// сеттеры
+	void setId(int newId) { id = newId; }
+	void setBorrowedBooks(const std::vector<int>& books) { borrowedBooks = books; }
+	void setHistory(const std::vector<int>& hist) { history = hist; }
+	void setRegistrationDate(time_t date) { registrationDate = date; }
+
 	// методы
 	void borrowBook(int bookId); // добавить книгу в список взятых
 	void returnBook(int bookId); // убрать из списка взятых, добавить в историю

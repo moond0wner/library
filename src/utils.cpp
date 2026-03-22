@@ -1,7 +1,9 @@
 #include "Utils.h"
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <iomanip>
+#include <limits>
 #include <vector>
 
 using namespace std;
@@ -24,7 +26,9 @@ time_t parseDate(string dateStr) {
 }
 
 string dateToString(time_t date) {
-    struct tm* tm = localtime(&date);
+    struct tm tm_buf;
+    localtime_s(&tm_buf, &date);
+    struct tm* tm = &tm_buf;
     char buffer[20];
     strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", tm);
     return string(buffer);
@@ -72,4 +76,22 @@ optional<string> validateNumberPhoneContact(const string& numberPhone) {
     }
     return nullopt;
 
+}
+
+string inputString(const string& prompt) {
+    cout << prompt;
+    string res;
+    getline(cin >> ws, res); // ws убирает лишние пробелы и переносы строк
+    return res;
+}
+
+int inputInt(const string& prompt) {
+    int val;
+    while (true) {
+        cout << prompt;
+        if (cin >> val) return val;
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Ошибка! Введите число.\n";
+    }
 }

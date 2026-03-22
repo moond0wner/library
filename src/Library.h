@@ -17,6 +17,7 @@ private:
 public:
 	// лимит книг на человека
 	static const int BORROW_LIMIT = 5;
+	static const std::string FILE_NAME;
 
 	// управление книгами
 	void addBook(std::string title, std::string author, int year); // добавить книгу
@@ -24,18 +25,20 @@ public:
 	Book* findBookById(int bookId); // найти книгу по ID (возвращается указатель)
 	std::vector<Book> findBooksByTitle(std::string title); // найти книги по названию
 	std::vector<Book> findBooksByAuthor(std::string author); // найти книги по автору
+	void clearAllBooks(); // удалить все книги
 
 	// геттеры
-	std::vector<Book> getAllBooks() const;
+	const std::vector<Book>& getAllBooks() const;
+	const std::vector<Reader>& getAllReaders() const;
 	std::vector<Book> getAvailableBooks() const;
 	std::vector<Book> getBorrowedBooks() const;
-	std::vector<Reader> getAllReaders() const;
-
+	
 	// управление читателями
 	void addReader(std::string name, std::string contact); // добавить читателя
 	bool removeReader(int readerId); // удалить читателя (только если нет книг)
 	Reader* findReaderById(int readerId); // найти читателя по ID
 	std::vector<Reader> findReadersByName(std::string name); // найти читателей по имени
+	void clearAllReaders(); // удалить всех читателей
 
 	// операции выдачи
 	bool borrowBook(int bookId, int readerId, time_t date); // выдать книгу
@@ -48,6 +51,10 @@ public:
 	void printBorrowedBooks(); // вывести выданные
 	void printAllReaders(); // вывести всех читателей
 	void printOverdue(time_t currentDate); // вывести должников
+
+	// работа с JSON
+	void saveToFile(const std::string& filename) const;
+	void loadFromFile(const std::string& filename);
 
 };
 
