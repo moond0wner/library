@@ -44,6 +44,7 @@
 ---
 
 ## Структура проекта
+```
 library/
 ├── CMakeLists.txt
 ├── README.md
@@ -62,7 +63,7 @@ library/
 ├── Library.cpp
 ├── Utils.h
 └── Utils.cpp
-
+```
 ---
 
 ## Сборка и запуск
